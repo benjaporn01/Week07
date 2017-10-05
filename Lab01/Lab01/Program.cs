@@ -12,7 +12,7 @@ namespace ConsoleApp5
             Student su = new Student("Student Name", "12345678");
             try
             {
-                // su.Name = "My name";
+                su.Name = "My name";
                 su.GPA = 3.5f;
                 Console.WriteLine("Student name : " + su.Name);
                 Console.WriteLine("Student ID   : " + su.ID);
