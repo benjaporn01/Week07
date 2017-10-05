@@ -19,9 +19,9 @@ namespace ConsoleApp5
     }
     class Student
     {
-        public string Name;
-        public string ID;
-        public float GPA;
+        private string Name;
+        private string ID;
+        private float GPA;
     }
 
 
