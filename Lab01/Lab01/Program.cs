@@ -8,9 +8,10 @@ namespace ConsoleApp5
     {
         static void Main(string[] args)
         {
-            Student p = new Professor();
-            p.SayHi();
+            Teacher t = new Person();
+            t.SayHi();
             Console.ReadKey();
+
         }
     }
     class Person
