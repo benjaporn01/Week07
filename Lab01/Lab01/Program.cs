@@ -7,59 +7,73 @@ namespace ConsoleApp5
 
     class Program
     {
+
+
         static void Main(string[] args)
         {
-            Student su = new Student("Student Name", "12345678");
-            try
-            {
-                // su.Name = "My name";
-                su.GPA = 5.0f;
-                Console.WriteLine("Student name : " + su.Name);
-                Console.WriteLine("Student ID   : " + su.ID);
-                Console.WriteLine("Student GPA  : " + su.GPA);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            Teacher teacher = new Teacher("Tom", 350f);
+            Professor prof = new Professor("Jerry", 500f, 5000f);
+            // teacher work 20Hr/month
+            Console.WriteLine("{0} charge = {1}", teacher.TypeName(),
+                teacher.CalculateCharge(20f));
+            // professor work 12Hr/month
+            Console.WriteLine("{0} charge = {1}", prof.TypeName(),
+                prof.CalculateCharge(12F));
             Console.ReadLine();
         }
+
     }
-    class Student
+
+    class Teacher
     {
+        // constructor (for initial private/protected variables)
+        public Teacher(string name, float billingRate)
+        {
+            this.name = name;
+            this.billingRate = billingRate;
+        }
+        // figure out the charge based on teacher's rate
+        public float CalculateCharge(float hours)
+        {
+            return (hours * billingRate);
+        }
+        // return the name of this type
+        public string TypeName()
+        {
+            return ("Teacher");
+        }
         private string name;
-        private string id;
-        private float gpa;
+        protected float billingRate;
+    }
 
-        public Student(string Name, string ID)
+    class Professor : Teacher
+    {
+        private float emolument;  // เงินประจำตำแหน่ง
+
+        public Professor(string name, float billingRate) : base(name, billingRate)
         {
-            this.name = Name;   // assign auto variable to the field
-            this.id = ID;
         }
 
-        public string Name
+        public Professor(string name, float billingRate, float emolument)
+        : this(name, billingRate)
         {
-            get { return name; }
+            this.emolument = emolument;
         }
-        public string ID
+
+        // new function, because it's different than the base version
+        public new float CalculateCharge(float hours)
         {
-            get { return id; }
+            if (hours < 1.0F)
+                hours = 1.0F; // minimum charge.
+            return (hours * billingRate) + emolument;
         }
-        public float GPA
+        // new function, because it's different than the base version
+        public new string TypeName()
         {
-            get
-            {
-                return gpa;
-            }
-            set
-            {
-                if (value > 0.0 && value <= 4.0)
-                    gpa = value;
-                else
-                    throw (new Exception("Error!!!! invalid GPA"));
-            }
+            return ("Professor");
         }
     }
+
 
 }
 
