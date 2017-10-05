@@ -6,17 +6,22 @@ namespace ConsoleApp5
 
     class Program
     {
+
         static void Main(string[] args)
         {
-            Vector v1 = new Vector(1, 4);
-            Vector v2 = new Vector(8, 5);
-            Vector v3 = v1 + v2;
-            Console.WriteLine("vector v1 = " + v1);
-            Console.WriteLine("vector v2 = " + v2);
-            Console.WriteLine("vector v3 = " + v3);
-            Console.WriteLine("-v3 = " + (-v3));
+            Person p = new Person();
+            p.SayHi();
+            Student s = new Student();
+            s.SayHi();
+            Person sp = new Student();
+            sp.SayHi();
+            Teacher t = new Teacher();
+            t.SayHi();
+            Person tp = new Teacher();
+            tp.SayHi();
             Console.ReadKey();
         }
+
     }
     class Vector
     {
@@ -42,6 +47,31 @@ namespace ConsoleApp5
             return new Vector(-v1.X, -v1.Y);
         }
     }
+
+    class Person
+    {
+        public virtual void SayHi()
+        {
+            Console.WriteLine("Hi I'm a person");
+        }
+    }
+
+    class Student : Person
+    {
+        public override void SayHi()
+        {
+            Console.WriteLine("Hi I'm a student");
+        }
+    }
+
+    class Teacher : Person
+    {
+        public new void SayHi()
+        {
+            Console.WriteLine("Hi I'm a teacher");
+        }
+    }
+
 }
 
 
